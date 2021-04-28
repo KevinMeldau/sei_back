@@ -1,0 +1,42 @@
+  [1m[35m (273.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "sei_back_development"[0m
+  [1m[35m (150.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "sei_back_test"[0m
+  [1m[35m (1744.6ms)[0m  [1m[35mCREATE DATABASE "sei_back_development" ENCODING = 'unicode'[0m
+  [1m[35m (590.1ms)[0m  [1m[35mCREATE DATABASE "sei_back_test" ENCODING = 'unicode'[0m
+  [1m[35m (111.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (52.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(584753285416134135)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLessons (20210428170247)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (87.8ms)[0m  [1m[35mCREATE TABLE "lessons" ("id" bigserial primary key, "title" character varying, "subject" character varying, "unit" character varying, "videoLink" character varying, "markdownLink" character varying, "resourceLinks" character varying[] DEFAULT '{}', "tags" character varying[] DEFAULT '{}', "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210428170247"]]
+  [1m[36mTRANSACTION (22.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-04-28 17:04:16.694457"], ["updated_at", "2021-04-28 17:04:16.694457"]]
+  [1m[36mTRANSACTION (22.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(584753285416134135)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mLesson Create (0.8ms)[0m  [1m[32mINSERT INTO "lessons" ("title", "subject", "unit", "videoLink", "markdownLink", "resourceLinks", "tags", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Intro to Javascript"], ["subject", "Frontend Fundamentals"], ["unit", "1"], ["videoLink", "https://generalassembly.zoom.us/rec/play/tMxveLXAkAiLWe2N1c8dgdQI8v3mZxjos4D-_2m-7talBJp3hV4dEaCQz2yLL8i8UKxip5T5JErkkLX6.wiprAij7eGG882w7?startTime=1613570506000&_x_zm_rtaid=YS3DAMxuSgyGINA99kTc3w.1619548800303.14580ad70292b493e82d2b761ea9226e&_x_zm_rhtaid=712"], ["markdownLink", "https://seir-perseverance.netlify.app/frontend-fundamentals/week-1/day-3/lecture-materials/intro-to-javascript/"], ["resourceLinks", "{link1,link2}"], ["tags", "{Javascript,Web-Development,Functions}"], ["created_at", "2021-04-28 17:46:53.436523"], ["updated_at", "2021-04-28 17:46:53.436523"]]
+  [1m[36mTRANSACTION (34.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2021-04-28 13:47:06 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/justinanmoreno/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.3.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/justinanmoreno/.rbenv/versions/3.0.1/lib/ruby/gems/3.0.0/gems/railties-6.1.3.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 54.9ms | Allocations: 526)
+Completed 200 OK in 131ms (Views: 113.0ms | ActiveRecord: 0.0ms | Allocations: 4401)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-04-28 13:47:06 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/lessons" for 127.0.0.1 at 2021-04-28 13:47:12 -0400
+Processing by LessonsController#index as HTML
+  [1m[36mLesson Load (0.7ms)[0m  [1m[34mSELECT "lessons".* FROM "lessons"[0m
+  ↳ app/controllers/lessons_controller.rb:8:in `index'
+Completed 200 OK in 27ms (Views: 18.0ms | ActiveRecord: 6.9ms | Allocations: 7473)
+
+
